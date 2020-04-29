@@ -1,5 +1,3 @@
-# WGame Version Beta1
-
 import pyglet
 from pyglet.gl import *
 import json
