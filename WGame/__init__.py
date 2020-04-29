@@ -42,11 +42,14 @@ class WGame(pyglet.window.Window):
                                   anchor_x=wobj.data["anchor_x"], anchor_y=wobj.data["anchor_y"]).draw()
 
             elif wobj.data["objtype"] == "button":
-                self.draw_rect(wobj.data["x"], wobj.data["y"], wobj.data["width"], wobj.data["height"], wobj.cColor)
+                self.draw_rect(wobj.data["x"], wobj.data["y"],
+                               wobj.data["width"], wobj.data["height"],
+                               wobj.cColor)
                 pyglet.text.Label(text=wobj.data["text"],
                                   font_name=wobj.data["font"],
                                   font_size=wobj.data["size"],
-                                  x=wobj.data["x"]+(wobj.data["width"]/2), y=wobj.data["y"]+(wobj.data["height"]/2),
+                                  x=wobj.data["x"]+(wobj.data["width"]/2),
+                                  y=wobj.data["y"]+(wobj.data["height"]/2),
                                   color=wobj.data["color"],
                                   anchor_x="center", anchor_y="center").draw()
 
@@ -105,7 +108,7 @@ class GuiObject(WObject):
         self.data = json.loads(jsondata)
         try:
             if len(self.data["bgcolor"]) == 3:
-                self.data["bgcolor"] = self.data["bgcolor"] + self.data["bgcolor"] + self.data["bgcolor"] + self.data["bgcolor"]
+                self.data["bgcolor"] *= 4
             if len(self.data["selbgcolor"]) == 3:
                 self.data["selbgcolor"] *= 4
             self.cColor = self.data["bgcolor"]
