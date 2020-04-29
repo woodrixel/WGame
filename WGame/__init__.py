@@ -39,7 +39,8 @@ class WGame(pyglet.window.Window):
                                   font_size=wobj.data["size"],
                                   x=wobj.data["x"], y=wobj.data["y"],
                                   color=wobj.data["color"],
-                                  anchor_x=wobj.data["anchor_x"], anchor_y=wobj.data["anchor_y"]).draw()
+                                  anchor_x=wobj.data["anchor_x"],
+                                  anchor_y=wobj.data["anchor_y"]).draw()
 
             elif wobj.data["objtype"] == "button":
                 self.draw_rect(wobj.data["x"], wobj.data["y"],
