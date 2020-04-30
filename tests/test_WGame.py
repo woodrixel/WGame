@@ -1,4 +1,4 @@
-from .. import WGame
+import WGame
 
 def test_removeall():
     pass
