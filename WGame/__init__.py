@@ -19,16 +19,22 @@ class WGame(pyglet.window.Window):
 
     def on_draw(self):
         self.clear()
-        # TODO: Collisions (broken)
         for gobj in self.wobjs:
             if not type(gobj) == GameObject: continue
             gobj.position[0] += gobj.velocity[0]*self.delta_time
             gobj.position[1] += gobj.velocity[1]*self.delta_time
+
+            gobj.collider_center_position = [gobj.position[0]+gobj.collider["center"][0], gobj.position[1]+gobj.collider["center"][1]]
+
+        # TODO: Collisions (broken?)
+        for gobj in self.wobjs:
+            if not type(gobj) == GameObject: continue
             for cobj in self.wobjs:
                 if cobj == gobj: continue
-                if gobj.position[0] == cobj.position[0] and gobj.position[1] == cobj.position[1]:
-                    gobj.on_collision(cobj)
-                    cobj.on_collision(gobj)
+                if gobj.collider_center_position[0] > cobj.collider_center_position[0] and gobj.collider_center_position[0] < (cobj.collider_center_position[0] + gobj.collider["width"]):
+                    if gobj.collider_center_position[1] > cobj.collider_center_position[1] and gobj.collider_center_position[1] < (cobj.collider_center_position[1] + gobj.collider["height"]):
+                        gobj.on_collision(cobj)
+                        cobj.on_collision(gobj)
 
         for wobj in self.wobjs:
             if wobj.data["objtype"] == "label":
@@ -118,6 +124,8 @@ class GuiObject(WObject):
 class GameObject(WObject):
     velocity = [0.0, 0.0]
     position = [0.0, 0.0]
+    collider_center_position = [0, 0]
+    collider = 0
     texture = 0
     friction = 0
 
@@ -130,5 +138,6 @@ class GameObject(WObject):
         self.texture.width = self.data["width"]
         self.texture.height = self.data["height"]
         self.friction = self.data["friction"]
+        self.collider = self.data["collider"]
 
     pass
