@@ -30,7 +30,7 @@ class WGame(pyglet.window.Window):
         for gobj in self.wobjs:
             if not type(gobj) == GameObject: continue
             for cobj in self.wobjs:
-                if not type(gobj) == GameObject: continue
+                if not type(cobj) == GameObject: continue
                 if cobj == gobj: continue
                 if gobj.collider_center_position[0] > cobj.collider_center_position[0] and gobj.collider_center_position[0] < (cobj.collider_center_position[0] + gobj.collider["width"]):
                     if gobj.collider_center_position[1] > cobj.collider_center_position[1] and gobj.collider_center_position[1] < (cobj.collider_center_position[1] + gobj.collider["height"]):
