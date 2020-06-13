@@ -35,7 +35,6 @@ class WGame(pyglet.window.Window):
                 if gobj.collider_center_position[0] > cobj.collider_center_position[0] and gobj.collider_center_position[0] < (cobj.collider_center_position[0] + gobj.collider["width"]):
                     if gobj.collider_center_position[1] > cobj.collider_center_position[1] and gobj.collider_center_position[1] < (cobj.collider_center_position[1] + gobj.collider["height"]):
                         gobj.on_collision(cobj)
-                        cobj.on_collision(gobj)
 
         for wobj in self.wobjs:
             if wobj.data["objtype"] == "label":
